@@ -17,7 +17,8 @@ public class motorGo extends SubsystemBase {
   
   private final SparkMax motor = new SparkMax(3, MotorType.kBrushless);
   RelativeEncoder re = motor.getEncoder();
-  PIDController PidCon = new PIDController(0.0004, 0.0, 0.0);
+  //PIDController PidCon = new PIDController(0.0004, .00013, 0.00001);
+  PIDController PidCon = new PIDController(0.0004, .00013, 0.000016);
 
   public motorGo() {}
 
@@ -28,12 +29,14 @@ public class motorGo extends SubsystemBase {
   }
 
 public void motorSpin() {
+//motor.set(100);
+
   //System.out.println(speed);
   motor.set(getMotorSpeed());
   //System.out.println(re.getPosition());
 
   SmartDashboard.putNumber("gyro angle", re.getPosition());
-  SmartDashboard.putNumber("gyro velo", re.getVelocity());
+  SmartDashboard.putNumber("motorrd velo", re.getVelocity());
 }
 
 
